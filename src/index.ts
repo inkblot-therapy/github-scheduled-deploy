@@ -11,7 +11,7 @@ Toolkit.run(async (tools) => {
     if(!webhook) {
       throw new Error('Webhoook is required.');
     }
-    scheduler.scheduleJob(schedule, () => {
+    scheduler.scheduleJob(schedule, async () => {
       const res = await request(webhook);
       if (res.status != 200) {
         throw new Error(`Returned ${ res.status }`);
