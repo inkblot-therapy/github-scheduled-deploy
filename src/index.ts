@@ -4,7 +4,8 @@ import scheduler from 'node-schedule';
 import moment from 'moment'
 
 Toolkit.run(async (tools) => {
-  const schedule = moment().endOf('day').add(2, 'hours').toDate();
+  const schedule = moment().add(5, 'minutes').toDate();
+  // const schedule = moment().endOf('day').add(2, 'hours').toDate();
   const webhook = process.env.MEDSTACK_WEBHOOK;
 
   try {
