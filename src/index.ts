@@ -16,11 +16,10 @@ Toolkit.run(async (tools) => {
     if(!webhook) {
       throw new Error('Webhoook is required.');
     }
-    console.log(schedule);
     await suspend(schedule);
     const res = await request(webhook, { method: 'POST' });
     if (res.statusCode != 200) {
-      throw new Error(`Returned ${ res.status }`);
+      throw new Error(`[Deploy Failded] Returned ${ res.status }`);
     }
     console.log(res);
   } catch (e) {
