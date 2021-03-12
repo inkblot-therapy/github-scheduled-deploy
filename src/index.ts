@@ -19,7 +19,7 @@ Toolkit.run(async (tools) => {
     await suspend(schedule);
     const res = await request(webhook, { method: 'POST' });
     if (res.statusCode != 200) {
-      throw new Error(`[Deploy Failded] Returned ${ res.status }`);
+      throw new Error(`[Deploy Failed] Returned ${ res.status }`);
     }
     console.log(res);
   } catch (e) {
