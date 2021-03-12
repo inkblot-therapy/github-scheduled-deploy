@@ -13,7 +13,7 @@ Toolkit.run(async (tools) => {
       throw new Error('Webhoook is required.');
     }
 
-    scheduler.scheduleJob(schedule, async () => {
+    await scheduler.scheduleJob(schedule, async () => {
       const res = await request(webhook);
       console.log(res);
 
