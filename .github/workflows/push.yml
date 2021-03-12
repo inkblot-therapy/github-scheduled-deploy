@@ -1,0 +1,55 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. 
+on:
+  push:
+    branches: [ master ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: "Deploy Scheduler on Master"
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - uses: inkblot-therapy/github-scheduled-deploy@master
+        env:
+          MEDSTACK_WEBHOOK: 'https://dashboard.medstack.co/webhooks/incoming/bG3kaVdg/zeh7LRUHKI2Bo2FduPc0'
+
+      # - uses: actions/checkout@v2
+      # - uses: actions/setup-node@v2
+      #   with:
+      #     node-version: '14'
+      #
+      # - uses: actions/cache@v2
+      #   with:
+      #     path: ~/.npm
+      #     key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-node-
+      # - run: npm install
+      # - run: npm run build
+      # - run: git config --global user.email "dev@inkblottherapy.com"
+      # - run: git config --global user.name "Inkblot Engineering Team"
+      # - run: git add --all
+      # - run: git commit -m "new build"
+      #
+      # - uses: ad-m/github-push-action@master
+      #   name: Push changes
+      #   with:
+      #     github_token: ${{ secrets.GH_TOKEN }}
+      #     branch: ${{ github.ref }}
+      #
+      # - uses: actions/checkout@v2
+      #   with:
+      #     ref: 'master'
+      #
+      # - uses: "inkblot-therapy/github-version-bumper@master"
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+
+      
