@@ -17,7 +17,7 @@
   "dependencies": {
     "actions-toolkit": "^6.0.1",
     "async-request": "^1.2.0",
-    "moment": "^2.29.1",
+    "moment-timezone": "^0.5.33",
     "uninstall": "0.0.0",
     "yargs": "^16.2.0"
   },

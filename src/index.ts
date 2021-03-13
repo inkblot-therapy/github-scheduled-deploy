@@ -1,6 +1,6 @@
-import { Toolkit } from 'actions-toolkit'
+import moment from 'moment-timezone';
 import request from 'async-request';
-import moment from 'moment'
+import { Toolkit } from 'actions-toolkit'
 
 async function suspend(ms) {
   return new Promise(resolve => {
@@ -9,14 +9,17 @@ async function suspend(ms) {
 }
 
 Toolkit.run(async (tools) => {
-  const schedule = moment().endOf('day').add(2, 'hours').valueOf() - moment().valueOf();
   const webhook = process.env.MEDSTACK_WEBHOOK;
+  const nowval = moment().tz('America/Toronto').valueOf();
+  const schedule = moment().tz('America/Toronto').endOf('day').add(2, 'hours').valueOf();
+  const deploy_milliseconds = schedule - nowval;
 
   try {
     if(!webhook) {
       throw new Error('Webhoook is required.');
     }
-    await suspend(schedule);
+    console.log('Will deploy in milliseconds: ', deploy_milliseconds);
+    await suspend(deploy_milliseconds);
     const res = await request(webhook, { method: 'POST' });
     if (res.statusCode != 200) {
       throw new Error(`[Deploy Failed] Returned ${ res.status }`);
