@@ -9,9 +9,10 @@ async function suspend(ms) {
 }
 
 Toolkit.run(async (tools) => {
+  const timezone = process.env.TIMEZONE || 'America/Toronto';
   const webhook = process.env.MEDSTACK_WEBHOOK;
-  const nowval = moment().tz('America/Toronto').valueOf();
-  const schedule = moment().tz('America/Toronto').endOf('day').add(2, 'hours').valueOf();
+  const nowval = moment().tz(timezone).valueOf();
+  const schedule = moment().tz(timezone).endOf('day').add(2, 'hours').valueOf();
   const deploy_milliseconds = schedule - nowval;
 
   try {
